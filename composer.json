@@ -1,0 +1,28 @@
+{
+    "name": "peso/peso-exchanger-interop",
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Peso\\Exchanger\\Interop\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "florianv/exchanger": "^2.8",
+        "peso/core": "^0.1.4"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.9",
+        "peso/ecb-service": "^0.1.1",
+        "php-http/guzzle7-adapter": "^1.1",
+        "psy/psysh": "*"
+    },
+    "conflict": {
+        "florianv/exchanger": "2.8.2"
+    }
+}
