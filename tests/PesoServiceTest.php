@@ -56,6 +56,16 @@ class PesoServiceTest extends TestCase
         self::assertGreaterThanOrEqual($dateBefore->julianDay, $response->date->julianDay);
         self::assertLessThanOrEqual($dateAfter->julianDay, $response->date->julianDay);
 
+        // historical
+
+        $response = $service->send(
+            new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13'))
+        );
+
+        self::assertInstanceOf(SuccessResponse::class, $response);
+        self::assertEquals('1.2345', $response->rate->value);
+        self::assertEquals('2025-06-13', $response->date->toString());
+
         // unsupported pair
 
         $response = $service->send(new CurrentExchangeRateRequest('USD', 'EUR'));
