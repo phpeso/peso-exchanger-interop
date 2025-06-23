@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Peso\Exchanger\Interop;
 
 use Arokettu\Date\Calendar;
