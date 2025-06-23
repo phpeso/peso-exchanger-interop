@@ -14,11 +14,11 @@
     "require": {
         "php": "^8.2",
         "florianv/exchanger": "^2.8",
-        "peso/core": "^0.1.4"
+        "peso/core": "^0.10"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.9",
-        "peso/ecb-service": "^0.1.1",
+        "peso/ecb-service": "^0.10",
         "php-http/guzzle7-adapter": "^1.1",
         "psy/psysh": "*"
     },

@@ -27,7 +27,7 @@ final readonly class ExchangerService implements ExchangeRateService
             return new \Exchanger\ExchangeRate(
                 $exchangeQuery->getCurrencyPair(),
                 (float)$result->rate->value,
-                new \DateTimeImmutable(),
+                $result->date->toDateTime(),
                 $this->getName(),
             );
         }

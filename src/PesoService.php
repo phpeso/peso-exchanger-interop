@@ -2,6 +2,8 @@
 
 namespace Peso\Exchanger\Interop;
 
+use Arokettu\Date\Calendar;
+use Arokettu\Date\Date;
 use DateInterval;
 use Exchanger\Contract\ExchangeRateService;
 use Exchanger\Exception\UnsupportedCurrencyPairException;
@@ -18,7 +20,7 @@ use Peso\Core\Services\SDK\Cache\NullCache;
 use Peso\Core\Types\Decimal;
 use Psr\SimpleCache\CacheInterface;
 
-final class PesoService implements ExchangeRateServiceInterface
+final readonly class PesoService implements ExchangeRateServiceInterface
 {
     private string $cachePrefix;
 
@@ -55,16 +57,19 @@ final class PesoService implements ExchangeRateServiceInterface
 
         $cacheKey = hash('sha1', $this->cachePrefix . serialize($request));
 
-        $rate = $this->cache->get($cacheKey);
-        if ($rate) {
-            return new SuccessResponse(new Decimal($rate));
+        $data = $this->cache->get($cacheKey);
+        if ($data) {
+            return new SuccessResponse(new Decimal($data['rate']), Date::createFromJulianDay($data['date']));
         }
 
         try {
             $result = $this->service->getExchangeRate($this->buildQuery($request));
-            $rate = (string)$result->getValue();
-            $this->cache->set($cacheKey, $rate, $this->ttl);
-            return new SuccessResponse(new Decimal($rate));
+            $data = [
+                'rate' => $rate = (string)$result->getValue(),
+                'date' => ($date = Calendar::fromDateTime($result->getDate()))->julianDay,
+            ];
+            $this->cache->set($cacheKey, $data, $this->ttl);
+            return new SuccessResponse(new Decimal($rate), $date);
         } catch (UnsupportedCurrencyPairException) {
             return new ErrorResponse(ConversionRateNotFoundException::fromRequest($request));
         }
