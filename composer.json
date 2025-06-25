@@ -1,5 +1,21 @@
 {
     "name": "peso/peso-exchanger-interop",
+    "type": "library",
+    "description": "Interoperability package for Peso and Exchanger (and Swap)",
+    "keywords": ["currency-conversion", "phpeso", "peso", "exchanger", "swap"],
+    "homepage": "https://phpeso.readthedocs.io/",
+    "license": "MIT",
+    "authors": [{
+        "name": "Anton Smirnov",
+        "role": "developer",
+        "homepage": "https://sandfox.me/",
+        "email": "sandfox+phpeso@sandfox.me"
+    }],
+    "support": {
+        "issues": "https://github.com/phpeso/peso-exchanger-interop/issues",
+        "source": "https://github.com/phpeso/peso-exchanger-interop",
+        "docs": "https://phpeso.readthedocs.io/"
+    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
