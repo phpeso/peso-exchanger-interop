@@ -10,9 +10,10 @@ use Exchanger\Contract\ExchangeRateQuery;
 use Exchanger\Contract\ExchangeRateService;
 use Exchanger\Contract\HistoricalExchangeRateQuery;
 use Exchanger\Exception\UnsupportedCurrencyPairException;
+use Override;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
-use Peso\Core\Responses\SuccessResponse;
+use Peso\Core\Responses\ExchangeRateResponse;
 use Peso\Core\Services\ExchangeRateServiceInterface;
 
 final readonly class ExchangerService implements ExchangeRateService
@@ -22,10 +23,11 @@ final readonly class ExchangerService implements ExchangeRateService
     ) {
     }
 
+    #[Override]
     public function getExchangeRate(ExchangeRateQuery $exchangeQuery): ExchangeRate
     {
         $result = $this->service->send($this->buildQuery($exchangeQuery));
-        if ($result instanceof SuccessResponse) {
+        if ($result instanceof ExchangeRateResponse) {
             return new \Exchanger\ExchangeRate(
                 $exchangeQuery->getCurrencyPair(),
                 (float)$result->rate->value,
@@ -36,6 +38,7 @@ final readonly class ExchangerService implements ExchangeRateService
         throw new UnsupportedCurrencyPairException($exchangeQuery->getCurrencyPair(), $this);
     }
 
+    #[Override]
     public function supportQuery(ExchangeRateQuery $exchangeQuery): bool
     {
         return $this->service->supports($this->buildQuery($exchangeQuery));
@@ -60,6 +63,7 @@ final readonly class ExchangerService implements ExchangeRateService
         }
     }
 
+    #[Override]
     public function getName(): string
     {
         return get_debug_type($this->service);

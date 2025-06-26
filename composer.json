@@ -36,14 +36,12 @@
     "require": {
         "php": "^8.2",
         "florianv/exchanger": "^2.8",
-        "peso/core": "^0.10",
+        "peso/core": "^0.10.4 || ^1.0",
         "psr/simple-cache": "^1 || ^2 || ^3"
     },
     "require-dev": {
         "florianv/swap": "^4.3",
         "guzzlehttp/guzzle": "^7.9",
-        "peso/ecb-service": "^0.10",
-        "peso/peso": "^0.9.0",
         "php-http/guzzle7-adapter": "^1.1",
         "phpunit/phpunit": "^12.2",
         "psy/psysh": "*",

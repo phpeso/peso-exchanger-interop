@@ -11,12 +11,13 @@ use Exchanger\Contract\ExchangeRateService;
 use Exchanger\Exception\UnsupportedCurrencyPairException;
 use Exchanger\ExchangeRateQuery;
 use Exchanger\ExchangeRateQueryBuilder;
+use Override;
 use Peso\Core\Exceptions\ConversionRateNotFoundException;
 use Peso\Core\Exceptions\RequestNotSupportedException;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ErrorResponse;
-use Peso\Core\Responses\SuccessResponse;
+use Peso\Core\Responses\ExchangeRateResponse;
 use Peso\Core\Services\ExchangeRateServiceInterface;
 use Peso\Core\Services\SDK\Cache\NullCache;
 use Peso\Core\Types\Decimal;
@@ -51,7 +52,8 @@ final readonly class PesoService implements ExchangeRateServiceInterface
         return $builder->build();
     }
 
-    public function send(object $request): SuccessResponse|ErrorResponse
+    #[Override]
+    public function send(object $request): ExchangeRateResponse|ErrorResponse
     {
         if (!$request instanceof CurrentExchangeRateRequest && !$request instanceof HistoricalExchangeRateRequest) {
             return new ErrorResponse(RequestNotSupportedException::fromRequest($request));
@@ -61,7 +63,7 @@ final readonly class PesoService implements ExchangeRateServiceInterface
 
         $data = $this->cache->get($cacheKey);
         if ($data) {
-            return new SuccessResponse(new Decimal($data['rate']), Date::createFromJulianDay($data['date']));
+            return new ExchangeRateResponse(new Decimal($data['rate']), Date::createFromJulianDay($data['date']));
         }
 
         try {
@@ -71,12 +73,13 @@ final readonly class PesoService implements ExchangeRateServiceInterface
                 'date' => ($date = Calendar::fromDateTime($result->getDate()))->julianDay,
             ];
             $this->cache->set($cacheKey, $data, $this->ttl);
-            return new SuccessResponse(new Decimal($rate), $date);
+            return new ExchangeRateResponse(new Decimal($rate), $date);
         } catch (UnsupportedCurrencyPairException) {
             return new ErrorResponse(ConversionRateNotFoundException::fromRequest($request));
         }
     }
 
+    #[Override]
     public function supports(object $request): bool
     {
         if (!$request instanceof CurrentExchangeRateRequest && !$request instanceof HistoricalExchangeRateRequest) {

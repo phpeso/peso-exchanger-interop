@@ -12,7 +12,7 @@ use Peso\Core\Exceptions\RequestNotSupportedException;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ErrorResponse;
-use Peso\Core\Responses\SuccessResponse;
+use Peso\Core\Responses\ExchangeRateResponse;
 use Peso\Exchanger\Interop\PesoService;
 use SlevomatCodingStandard\Sniffs\TestCase;
 use stdClass;
@@ -38,7 +38,7 @@ class PesoServiceTest extends TestCase
         $response = $service->send(new CurrentExchangeRateRequest('EUR', 'USD'));
         $dateAfter = Date::today();
 
-        self::assertInstanceOf(SuccessResponse::class, $response);
+        self::assertInstanceOf(ExchangeRateResponse::class, $response);
         self::assertEquals('1.1234', $response->rate->value);
         self::assertGreaterThanOrEqual($dateBefore->julianDay, $response->date->julianDay);
         self::assertLessThanOrEqual($dateAfter->julianDay, $response->date->julianDay);
@@ -51,7 +51,7 @@ class PesoServiceTest extends TestCase
         $response = $service->send(new CurrentExchangeRateRequest('EUR', 'USD'));
         $dateAfter = Date::today();
 
-        self::assertInstanceOf(SuccessResponse::class, $response);
+        self::assertInstanceOf(ExchangeRateResponse::class, $response);
         self::assertEquals('1.1234', $response->rate->value);
         self::assertGreaterThanOrEqual($dateBefore->julianDay, $response->date->julianDay);
         self::assertLessThanOrEqual($dateAfter->julianDay, $response->date->julianDay);
@@ -62,7 +62,7 @@ class PesoServiceTest extends TestCase
             new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13'))
         );
 
-        self::assertInstanceOf(SuccessResponse::class, $response);
+        self::assertInstanceOf(ExchangeRateResponse::class, $response);
         self::assertEquals('1.2345', $response->rate->value);
         self::assertEquals('2025-06-13', $response->date->toString());
 
