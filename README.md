@@ -65,7 +65,7 @@ echo $peso->getHistoricalConversionRate('EUR', 'USD', '2025-06-13'), PHP_EOL;
 
 ## Documentation
 
-Read the full documentation here: <https://phpeso.org/v0.x/interop/exchanger.html>
+Read the full documentation here: <https://phpeso.org/v1.x/interop/exchanger.html>
 
 ## Support
 
