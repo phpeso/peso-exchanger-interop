@@ -14,12 +14,12 @@ use Override;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ExchangeRateResponse;
-use Peso\Core\Services\ExchangeRateServiceInterface;
+use Peso\Core\Services\PesoServiceInterface;
 
 final readonly class ExchangerService implements ExchangeRateService
 {
     public function __construct(
-        private ExchangeRateServiceInterface $service,
+        private PesoServiceInterface $service,
     ) {
     }
 
@@ -45,7 +45,7 @@ final readonly class ExchangerService implements ExchangeRateService
     }
 
     private function buildQuery(
-        ExchangeRateQuery $exchangeQuery
+        ExchangeRateQuery $exchangeQuery,
     ): CurrentExchangeRateRequest|HistoricalExchangeRateRequest {
         $pair = $exchangeQuery->getCurrencyPair();
 

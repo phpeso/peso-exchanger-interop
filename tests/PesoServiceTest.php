@@ -7,7 +7,7 @@ namespace Peso\Exchanger\Interop\Tests;
 use Arokettu\Date\Calendar;
 use Arokettu\Date\Date;
 use Exchanger\Service\PhpArray;
-use Peso\Core\Exceptions\ConversionRateNotFoundException;
+use Peso\Core\Exceptions\ExchangeRateNotFoundException;
 use Peso\Core\Exceptions\RequestNotSupportedException;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
@@ -19,7 +19,7 @@ use stdClass;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 
-class PesoServiceTest extends TestCase
+final class PesoServiceTest extends TestCase
 {
     public function testRate(): void
     {
@@ -59,7 +59,7 @@ class PesoServiceTest extends TestCase
         // historical
 
         $response = $service->send(
-            new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13'))
+            new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13')),
         );
 
         self::assertInstanceOf(ExchangeRateResponse::class, $response);
@@ -71,7 +71,7 @@ class PesoServiceTest extends TestCase
         $response = $service->send(new CurrentExchangeRateRequest('USD', 'EUR'));
 
         self::assertInstanceOf(ErrorResponse::class, $response);
-        self::assertInstanceOf(ConversionRateNotFoundException::class, $response->exception);
+        self::assertInstanceOf(ExchangeRateNotFoundException::class, $response->exception);
         self::assertEquals('Unable to find exchange rate for USD/EUR', $response->exception->getMessage());
     }
 
@@ -91,7 +91,7 @@ class PesoServiceTest extends TestCase
 
         self::assertInstanceOf(ErrorResponse::class, $response);
         self::assertInstanceOf(RequestNotSupportedException::class, $response->exception);
-        self::assertEquals('Unrecognized request type: "stdClass"', $response->exception->getMessage());
+        self::assertEquals('Unsupported request type: "stdClass"', $response->exception->getMessage());
     }
 
     public function testSupport(): void
@@ -109,7 +109,7 @@ class PesoServiceTest extends TestCase
         self::assertTrue($service->supports(new CurrentExchangeRateRequest('EUR', 'USD')));
         self::assertFalse($service->supports(new CurrentExchangeRateRequest('USD', 'EUR')));
         self::assertTrue($service->supports(
-            new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13'))
+            new HistoricalExchangeRateRequest('EUR', 'USD', Calendar::parse('2025-06-13')),
         ));
         self::assertFalse($service->supports(new stdClass()));
     }

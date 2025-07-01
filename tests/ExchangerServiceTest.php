@@ -15,7 +15,7 @@ use Peso\Core\Services\ArrayService;
 use Peso\Exchanger\Interop\ExchangerService;
 use PHPUnit\Framework\TestCase;
 
-class ExchangerServiceTest extends TestCase
+final class ExchangerServiceTest extends TestCase
 {
     public function testRate(): void
     {
@@ -84,7 +84,7 @@ class ExchangerServiceTest extends TestCase
 
         self::expectException(UnsupportedCurrencyPairException::class);
         self::expectExceptionMessage(
-            'The currency pair "USD/EUR" is not supported by the service "Peso\Exchanger\Interop\ExchangerService".'
+            'The currency pair "USD/EUR" is not supported by the service "Peso\Exchanger\Interop\ExchangerService".',
         );
         $exchanger->getExchangeRate($query);
     }

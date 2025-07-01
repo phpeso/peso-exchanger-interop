@@ -12,18 +12,18 @@ use Exchanger\Exception\UnsupportedCurrencyPairException;
 use Exchanger\ExchangeRateQuery;
 use Exchanger\ExchangeRateQueryBuilder;
 use Override;
-use Peso\Core\Exceptions\ConversionRateNotFoundException;
+use Peso\Core\Exceptions\ExchangeRateNotFoundException;
 use Peso\Core\Exceptions\RequestNotSupportedException;
 use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ErrorResponse;
 use Peso\Core\Responses\ExchangeRateResponse;
-use Peso\Core\Services\ExchangeRateServiceInterface;
+use Peso\Core\Services\PesoServiceInterface;
 use Peso\Core\Services\SDK\Cache\NullCache;
 use Peso\Core\Types\Decimal;
 use Psr\SimpleCache\CacheInterface;
 
-final readonly class PesoService implements ExchangeRateServiceInterface
+final readonly class PesoService implements PesoServiceInterface
 {
     private string $cachePrefix;
 
@@ -75,7 +75,7 @@ final readonly class PesoService implements ExchangeRateServiceInterface
             $this->cache->set($cacheKey, $data, $this->ttl);
             return new ExchangeRateResponse(new Decimal($rate), $date);
         } catch (UnsupportedCurrencyPairException) {
-            return new ErrorResponse(ConversionRateNotFoundException::fromRequest($request));
+            return new ErrorResponse(ExchangeRateNotFoundException::fromRequest($request));
         }
     }
 
