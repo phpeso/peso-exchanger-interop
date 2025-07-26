@@ -3,12 +3,18 @@
 [![Packagist]][Packagist Link]
 [![PHP]][Packagist Link]
 [![License]][License Link]
+[![GitHub Actions]][GitHub Actions Link]
+[![Codecov]][Codecov Link]
 
 [Packagist]: https://img.shields.io/packagist/v/peso/peso-exchanger-interop.svg?style=flat-square
 [PHP]: https://img.shields.io/packagist/php-v/peso/peso-exchanger-interop.svg?style=flat-square
 [License]: https://img.shields.io/packagist/l/peso/peso-exchanger-interop.svg?style=flat-square
+[GitHub Actions]: https://img.shields.io/github/actions/workflow/status/phpeso/peso-exchanger-interop/ci.yml?style=flat-square
+[Codecov]: https://img.shields.io/codecov/c/gh/phpeso/peso-exchanger-interop?style=flat-square
 
 [Packagist Link]: https://packagist.org/packages/peso/peso-exchanger-interop
+[GitHub Actions Link]: https://github.com/phpeso/peso-exchanger-interop/actions
+[Codecov Link]: https://codecov.io/gh/phpeso/peso-exchanger-interop
 [License Link]: LICENSE.md
 
 [Peso Framework] interoperability package for [Exchanger] and [Swap].
