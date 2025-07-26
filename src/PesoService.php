@@ -59,7 +59,7 @@ final readonly class PesoService implements PesoServiceInterface
             return new ErrorResponse(RequestNotSupportedException::fromRequest($request));
         }
 
-        $cacheKey = hash('sha1', $this->cachePrefix . serialize($request));
+        $cacheKey = 'peso|swap|' . hash('sha1', $this->cachePrefix . serialize($request));
 
         $data = $this->cache->get($cacheKey);
         if ($data) {
