@@ -28,6 +28,8 @@ use Peso\Core\Services\SDK\Cache\NullCache;
 use Peso\Core\Types\Decimal;
 use Psr\SimpleCache\CacheInterface;
 
+require __DIR__ . '/check_exchanger.php';
+
 final readonly class PesoService implements PesoServiceInterface
 {
     private string $cachePrefix;

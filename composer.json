@@ -51,6 +51,7 @@
         "vimeo/psalm": "^6.12"
     },
     "conflict": {
-        "florianv/exchanger": "<2.8 || >=3"
+        "florianv/exchanger": "<2.8 || >=3",
+        "part-db/exchanger": "<3 || >= 4"
     }
 }

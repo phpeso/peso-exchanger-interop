@@ -21,6 +21,8 @@ use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ExchangeRateResponse;
 use Peso\Core\Services\PesoServiceInterface;
 
+require __DIR__ . '/check_exchanger.php';
+
 final readonly class ExchangerService implements ExchangeRateService
 {
     public function __construct(
