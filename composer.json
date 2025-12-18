@@ -35,11 +35,11 @@
     },
     "require": {
         "php": "^8.2",
-        "florianv/exchanger": "^2.8",
         "peso/core": "^1.1",
         "psr/simple-cache": "^1 || ^2 || ^3"
     },
     "require-dev": {
+        "florianv/exchanger": "*",
         "florianv/swap": "^4.3",
         "guzzlehttp/guzzle": "^7.9",
         "php-http/guzzle7-adapter": "^1.1",
@@ -51,6 +51,6 @@
         "vimeo/psalm": "^6.12"
     },
     "conflict": {
-        "florianv/exchanger": "2.8.2"
+        "florianv/exchanger": "<2.8 || >=3"
     }
 }
