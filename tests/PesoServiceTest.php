@@ -24,6 +24,8 @@ use stdClass;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 
+use function Arokettu\Debug\set_private_field;
+
 final class PesoServiceTest extends TestCase
 {
     public function testRate(): void
@@ -48,9 +50,9 @@ final class PesoServiceTest extends TestCase
         self::assertGreaterThanOrEqual($dateBefore->julianDay, $response->date->julianDay);
         self::assertLessThanOrEqual($dateAfter->julianDay, $response->date->julianDay);
 
-        $service = new PesoService($exchange, $cache);
-
         // retrieve the same thing from a cache
+
+        set_private_field($exchange, 'latestRates', []); // make sure we're reading from the cache
 
         $dateBefore = Date::today(); // for a case when date changes when test is running
         $response = $service->send(new CurrentExchangeRateRequest('EUR', 'USD'));

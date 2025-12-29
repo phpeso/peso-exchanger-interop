@@ -36,9 +36,10 @@
     "require": {
         "php": "^8.2",
         "peso/core": "^1.1",
-        "psr/simple-cache": "^1 || ^2 || ^3"
+        "psr/simple-cache": "^2 || ^3"
     },
     "require-dev": {
+        "arokettu/private-access": "^3.0",
         "florianv/exchanger": "*",
         "florianv/swap": "^4.3",
         "guzzlehttp/guzzle": "^7.9",
@@ -47,11 +48,10 @@
         "psy/psysh": "*",
         "sandfox.dev/code-standard": "^1.2025.09.17",
         "squizlabs/php_codesniffer": "*",
-        "symfony/cache": "^7.3",
-        "vimeo/psalm": "^6.12"
+        "symfony/cache": "^7.3"
     },
     "conflict": {
         "florianv/exchanger": "<2.8 || >=3",
-        "part-db/exchanger": "<3 || >= 4"
+        "part-db/exchanger": "<3 || >=4"
     }
 }
