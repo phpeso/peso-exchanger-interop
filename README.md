@@ -38,7 +38,7 @@ Peso services in Exchanger:
 
 use Exchanger\Exchanger;
 use Exchanger\ExchangeRateQueryBuilder;
-use Peso\Exchanger\Interop\ExchangerService;
+use Peso\Interop\Exchanger\ExchangerService;
 use Peso\Services\EuropeanCentralBankService;
 
 $service = new ExchangerService(new EuropeanCentralBankService());
@@ -59,7 +59,7 @@ Exchanger services in Peso:
 <?php
 
 use Exchanger\Service\EuropeanCentralBank;
-use Peso\Exchanger\Interop\PesoService;
+use Peso\Interop\Exchanger\PesoService;
 use Peso\Peso\CurrencyConverter;
 
 $service = new PesoService(new EuropeanCentralBank());
