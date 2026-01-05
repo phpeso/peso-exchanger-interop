@@ -2,6 +2,12 @@
 
 ## 1.x
 
+### 1.1.0
+
+*Jan 5, 2026*
+
+* Renamed the namespace for consistency: `Peso\Exchanger\Interop` → `Peso\Interop\Exchanger`
+
 ### 1.0.2
 
 *Dec 18, 2025*
