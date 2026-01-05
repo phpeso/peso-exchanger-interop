@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Peso\Exchanger\Interop\Tests;
+namespace Peso\Interop\Exchanger\Tests;
 
 use Arokettu\Date\Calendar;
 use Arokettu\Date\Date;
@@ -18,7 +18,7 @@ use Peso\Core\Requests\CurrentExchangeRateRequest;
 use Peso\Core\Requests\HistoricalExchangeRateRequest;
 use Peso\Core\Responses\ErrorResponse;
 use Peso\Core\Responses\ExchangeRateResponse;
-use Peso\Exchanger\Interop\PesoService;
+use Peso\Interop\Exchanger\PesoService;
 use SlevomatCodingStandard\Sniffs\TestCase;
 use stdClass;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;

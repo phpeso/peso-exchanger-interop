@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Peso\Exchanger\Interop;
+namespace Peso\Interop\Exchanger;
 
 use Arokettu\Date\Calendar;
 use Exchanger\Contract\ExchangeRate;

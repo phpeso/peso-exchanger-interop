@@ -25,12 +25,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Peso\\Exchanger\\Interop\\": "src"
+            "Peso\\Exchanger\\Interop\\": "src_old_ns",
+            "Peso\\Interop\\Exchanger\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Peso\\Exchanger\\Interop\\Tests\\": "tests"
+            "Peso\\Interop\\Exchanger\\Tests\\": "tests"
         }
     },
     "require": {

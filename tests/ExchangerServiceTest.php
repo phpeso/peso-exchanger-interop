@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Peso\Exchanger\Interop\Tests;
+namespace Peso\Interop\Exchanger\Tests;
 
 use Arokettu\Date\Calendar;
 use Arokettu\Date\Date;
@@ -17,7 +17,7 @@ use Exchanger\Exception\UnsupportedCurrencyPairException;
 use Exchanger\Exchanger;
 use Exchanger\ExchangeRateQueryBuilder;
 use Peso\Core\Services\ArrayService;
-use Peso\Exchanger\Interop\ExchangerService;
+use Peso\Interop\Exchanger\ExchangerService;
 use PHPUnit\Framework\TestCase;
 
 final class ExchangerServiceTest extends TestCase
@@ -89,7 +89,7 @@ final class ExchangerServiceTest extends TestCase
 
         self::expectException(UnsupportedCurrencyPairException::class);
         self::expectExceptionMessage(
-            'The currency pair "USD/EUR" is not supported by the service "Peso\Exchanger\Interop\ExchangerService".',
+            'The currency pair "USD/EUR" is not supported by the service "Peso\Interop\Exchanger\ExchangerService".',
         );
         $exchanger->getExchangeRate($query);
     }
